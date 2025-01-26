@@ -12,7 +12,7 @@ namespace Tests.EntitiesTests
         {
             // Arrange
             int size = 4;
-            var charEntities = GenerateCharEntities(size, size);
+            var charEntities = GenerateEmptyCharEntities(size, size);
             
             // Act
             var entityResolver = new EntityResolver(charEntities);
@@ -29,7 +29,37 @@ namespace Tests.EntitiesTests
             CustomAssertions.AreEqual(resolvedField, expected);
         }
 
-        private Entity[][] GenerateCharEntities(int rows, int columns)
+        [Test]
+        public void Test_00_03_Row_Resolve()
+        {
+            // Arrange
+            var size = 4;
+            char[][] chars =
+            {
+                new[] { 'a', 'a', 'a', 'b' },
+                new[] { 'b', 'c', 'd', 'e' },
+                new[] { 'f', 'g', 'h', 'i' },
+                new[] { 'j', 'k', 'l', 'm' }
+            };
+            var charEntities = GenerateCharEntitiesForChars(chars);
+            
+            // Act
+            var entityResolver = new EntityResolver(charEntities);
+            entityResolver.Resolve();
+            var resolvedField = entityResolver.GetResolvedField();
+            
+            // Assert
+            bool[][] expected =
+            {
+                new[] { true, true, true, false },
+                new[] { false, false, false, false },
+                new[] { false, false, false, false },
+                new[] { false, false, false, false }
+            };
+            CustomAssertions.AreEqual(resolvedField, expected);
+        }
+
+        private Entity[][] GenerateEmptyCharEntities(int rows, int columns)
         {
             var charEntities = new Entity[rows][];
             for (var row = 0; row < charEntities.Length; row++)
@@ -38,6 +68,23 @@ namespace Tests.EntitiesTests
                 for (var column = 0; column < charEntities[row].Length; column++)
                 {
                     charEntities[row][column] = new CharEntity();
+                }
+            }
+            
+            return charEntities;
+        }
+
+        private Entity[][] GenerateCharEntitiesForChars(char[][] chars)
+        {
+            var charEntities = new Entity[chars.Length][];
+            for (var row = 0; row < charEntities.Length; row++)
+            {
+                charEntities[row] = new Entity[chars[row].Length];
+                for (var column = 0; column < charEntities[row].Length; column++)
+                {
+                    CharEntity charEntity = new CharEntity();
+                    charEntity.Symbol = chars[row][column];
+                    charEntities[row][column] = charEntity;
                 }
             }
             
