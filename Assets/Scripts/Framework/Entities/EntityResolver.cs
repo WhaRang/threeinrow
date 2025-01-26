@@ -1,4 +1,4 @@
-﻿namespace Entities
+﻿namespace Framework.Entities
 {
     public class EntityResolver
     {
@@ -25,6 +25,11 @@
                     ResolveNeighboursClockwiseStartingWithRight(i, j);
                 }
             }
+        }
+
+        public bool[][] GetResolvedField()
+        {
+            return resolvedField;
         }
 
         private void ResolveNeighboursClockwiseStartingWithRight(int x, int y)

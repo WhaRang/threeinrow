@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Logger
+namespace Framework.Logger
 {
     public interface ILogger
     {
