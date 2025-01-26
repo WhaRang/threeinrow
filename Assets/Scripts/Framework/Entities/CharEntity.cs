@@ -1,6 +1,6 @@
 ﻿namespace Framework.Entities
 {
-    public class CharEntity
+    public class CharEntity : Entity
     {
         public char Symbol { get; set; }
 

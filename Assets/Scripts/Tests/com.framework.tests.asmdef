@@ -1,0 +1,16 @@
+{
+    "name": "com.framework.tests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:14a53316179349f49be812fce61ba709"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
